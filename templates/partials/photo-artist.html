@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+  <title>Omerta {{ artist.name }}</title>
+{% endblock %}
+
+{% block body %}
+  <div class="artist-page-name">{{ artist.name }}</div>
+  <div class="preview-slider">
+    <div class="swiper-container js-preview-slider">
+       <div class="swiper-wrapper">
+              {% for obj in active_photos %}
+              <div class="swiper-slide"><img class="preview-slider__media" src="{{ obj.photo_url }}" data-num="{{ obj.album.id }}"></div>
+              {% endfor %}
+       </div>
+       <div class="swiper-button-prev">
+              <div class="arrow-prev"></div>
+       </div>
+       <div class="swiper-button-next">
+              <div class="arrow-next"></div>
+       </div>
+     </div>
+  </div>
+  </ul><a class="back-button back-to-list" href="{% url 'photographers' %}">Back to all</a>
+  <div class="folders-sliders js-all-folders-wrap">
+     {% for ph_obj in photos %}
+        <div class="swiper-container folder-slider js-folder-slider" data-num="{{ ph_obj.0.album.id }}">
+          <div class="swiper-wrapper">
+             {% for obj in ph_obj %}
+                <div class="swiper-slide"><img class="folder-slider__media" src="{{ obj.photo_url }}"></div>
+             {% endfor %}
+          </div>
+          <div class="swiper-button-prev">
+             <div class="arrow-prev"></div>
+          </div>
+          <div class="swiper-button-next">
+             <div class="arrow-next"></div>
+          </div>
+        </div>
+     {% endfor %}
+     <div class="close-button js-close-folder"></div>
+  </div>
+{% endblock %}

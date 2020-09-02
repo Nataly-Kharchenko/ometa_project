@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head %}
+  <meta name="keywords" content="portfolio, works, advertising campaign, production service works, production service company, shooting in Ukraine, advertising production, production service Kiev, Omerta creation, Omerta, production company Kiev, remote shooting, content production, service production Kiev, production team Ukraine, print, photography, advertising photography Ukraine, advertising photographer Kiev, fashion photography, fashion campaign, print campaign, art photography, shoot photography">
+  <title>Omerta Photographers</title>
+{% endblock %}
+
+{% block body %}
+  <div class="artists js-artists">
+    <div class="artists__previews-list"><a class="artists__link artists__preview-img js-artists-preview active" href="{{ active_artist.get_absolute_url }}" title="{{ active_artist.name }}" data-num="{{ active_artist.id }}" style="background-image: url('{{ active_photo.photo_url }}')"></a>
+       {% for obj in photos %}
+         <a class="artists__link artists__preview-img js-artists-preview" href="{{ obj.album.photograph.get_absolute_url }}" title="{{ obj.album.photograph.name }}" data-num="{{ obj.album.photograph.id }}" style="background-image: url('{{ obj.photo_url }}') "></a>
+       {% endfor %}
+     </div>
+     <ul class="artists__list">
+        {% for obj in photo_artists %}
+          <li class="artists__item js-artists-names" data-num="{{ obj.id }}"><a class="artists__link" href="{{ obj.get_absolute_url }}" title="{{ obj.name }}">{{ obj.name }}</a></li>
+        {% endfor %}
+     </ul>
+  </div>
+{% endblock %}
