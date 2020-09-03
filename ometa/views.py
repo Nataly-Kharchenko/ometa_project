@@ -4,6 +4,7 @@ from ometa.models import Photographer, Album, Photo, Director, Video, Work, Abou
 
 
 def home(request):
+
     return render(request, "partials/index.html")
 
 

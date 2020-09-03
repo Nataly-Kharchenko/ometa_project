@@ -175,6 +175,13 @@ class Addres(models.Model):
 class Preview_Video(models.Model):
     name = models.CharField(max_length=30, default='No name')
     video = models.FileField(upload_to='preview_video', null=True, blank=True)
+    isTitle = models.BooleanField(default=True)
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        if self.isVisible:
+            About_U.objects.filter(isVisible=True).update(isVisible=False)
+        super(About_U, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
