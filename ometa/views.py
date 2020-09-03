@@ -86,7 +86,7 @@ def photo_artist(request, id=None):
 
     context = {
         "artist": artist,
-        "active_photos": first_photo_list,
+        "active_photos": photo,
         "photos": photo_list
     }
     return render(request, "partials/photo-artist.html", context)
