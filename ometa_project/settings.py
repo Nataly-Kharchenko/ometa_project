@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!afbls*yv9aps*49+3r)=vl5ekni*c
 # DEBUG = False
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['https://git.heroku.com/mighty-lake-17512.git']
+ALLOWED_HOSTS = ['mighty-lake-17512.herokuapp.com']
 
 # Application definition
 
