@@ -62,9 +62,9 @@ def photographers(request):
 
 
 def photo_artist(request, id=None):
-    artist = get_object_or_404(Photographer, id=id)
-    albums_list = Album.objects.filter(photograph=id)
-    photo = Photo.objects.all()
+    artist = get_object_or_404(Photographer, id=id) #name: chjsbc
+    albums_list = Album.objects.filter(photograph=id) #{alb1, alb2}
+    # photo = Photo.objects.all()
 
     first_photo_list = []
     photo_list = []
@@ -72,11 +72,11 @@ def photo_artist(request, id=None):
     i = 0
 
     for al_obj in albums_list:
+        photo = Photo.objects.filter(album=al_obj.id)
         for ph_obj in photo:
-            if ph_obj.album.id == al_obj.id:
-                if ph_obj.number == '1':
-                    first_photo_list.append(ph_obj)
-                photos.append(ph_obj)
+            if ph_obj.number == '1':
+                first_photo_list.append(ph_obj)
+            photos.append(ph_obj)
         photos.sort(key=lambda x: x.number)
         photo_list.append([])
         for obj in photos:
@@ -86,7 +86,7 @@ def photo_artist(request, id=None):
 
     context = {
         "artist": artist,
-        "active_photos": photo,
+        "active_photos": first_photo_list,
         "photos": photo_list
     }
     return render(request, "partials/photo-artist.html", context)

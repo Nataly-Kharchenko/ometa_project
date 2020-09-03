@@ -57,7 +57,7 @@ class Photo(models.Model):
 class Director(models.Model):
     number = models.IntegerField(default=0)
     name = models.CharField(max_length=30, default='No name')
-    preview = models.ImageField(upload_to='directors preview', null=True, blank=True)
+    preview = models.ImageField(upload_to='directors_preview', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
