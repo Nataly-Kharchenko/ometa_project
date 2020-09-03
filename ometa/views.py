@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from ometa.models import Photographer, Album, Photo, Director, Video, Work, About, Contact, Address
+from ometa.models import Photographer, Album, Photo, Director, Video, Work, About_U, Contact, Addres, Preview_Video
 
 
 def home(request):
@@ -8,7 +8,7 @@ def home(request):
 
 
 def works(request):
-    works_list = Work.objects.all()
+    works_list = Work.objects.all().order_by('number')
 
     context = {
         "works": works_list
@@ -17,7 +17,7 @@ def works(request):
 
 
 def directors(request):
-    director_artists = Director.objects.all()
+    director_artists = Director.objects.all().order_by('number')
 
     if director_artists:
         context = {
@@ -31,7 +31,7 @@ def directors(request):
 
 def director_artist(request, id=None):
     director = get_object_or_404(Director, id=id)
-    videos = Video.objects.filter(director=id)
+    videos = Video.objects.filter(director=id).order_by('number')
 
     context = {
         "director": director,
@@ -41,7 +41,7 @@ def director_artist(request, id=None):
 
 
 def photographers(request):
-    photo_artists = Photographer.objects.all()
+    photo_artists = Photographer.objects.all().order_by('number')
     preview_photo = Photo.objects.filter(isTitleImg='1')
     preview_photo_list = []
     for ar_obj in photo_artists:
@@ -62,9 +62,8 @@ def photographers(request):
 
 
 def photo_artist(request, id=None):
-    artist = get_object_or_404(Photographer, id=id) #name: chjsbc
-    albums_list = Album.objects.filter(photograph=id) #{alb1, alb2}
-    # photo = Photo.objects.all()
+    artist = get_object_or_404(Photographer, id=id)
+    albums_list = Album.objects.filter(photograph=id).order_by('number')
 
     first_photo_list = []
     photo_list = []
@@ -93,7 +92,7 @@ def photo_artist(request, id=None):
 
 
 def about_us(request):
-    information = About.objects.get(isVisible=True)
+    information = About_U.objects.get(isVisible=True)
 
     context = {
         "about_us": information
@@ -103,7 +102,7 @@ def about_us(request):
 
 def contacts(request):
     contact_list = Contact.objects.all()
-    address_list = Address.objects.all()
+    address_list = Addres.objects.all()
 
     context = {
         "contacts": contact_list,

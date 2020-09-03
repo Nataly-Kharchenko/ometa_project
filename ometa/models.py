@@ -121,15 +121,15 @@ class Work(models.Model):
         return "/%s/" %(self.id)
 
 
-class About(models.Model):
+class About_U(models.Model):
     information = models.TextField(null=True, blank=True)
     isVisible = models.BooleanField(default=True)
 
     @transaction.atomic
     def save(self, *args, **kwargs):
         if self.isVisible:
-            About.objects.filter(isVisible=True).update(isVisible=False)
-        super(About, self).save(*args, **kwargs)
+            About_U.objects.filter(isVisible=True).update(isVisible=False)
+        super(About_U, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return str(self.id)
@@ -157,7 +157,7 @@ class Contact(models.Model):
         return "/%s/" %(self.id)
 
 
-class Address(models.Model):
+class Addres(models.Model):
     email = models.EmailField(max_length=30, default='No email')
     place = models.CharField(max_length=120, default='No address')
     link_for_google_maps = models.CharField(max_length=120, default='No link')
@@ -167,6 +167,20 @@ class Address(models.Model):
 
     def __str__(self):
         return self.place
+
+    def get_absolute_url(self):
+        return "/%s/" %(self.id)
+
+
+class Preview_Video(models.Model):
+    name = models.CharField(max_length=30, default='No name')
+    video = models.FileField(upload_to='preview_video', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         return "/%s/" %(self.id)
