@@ -129,7 +129,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR
 
-MEDIA_DIR = os.path.join(BASE_DIR, 'media/')
+MEDIA_DIR = os.path.join(BASE_DIR, 'templates/partials/media/')
 
 MEDIA_URL = '/media/'
 
