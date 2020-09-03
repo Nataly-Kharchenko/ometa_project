@@ -74,7 +74,7 @@ def photo_artist(request, id=None):
     for al_obj in albums_list:
         photo = Photo.objects.filter(album=al_obj.id)
         for ph_obj in photo:
-            if ph_obj.number == '1':
+            if ph_obj.number == 1:
                 first_photo_list.append(ph_obj)
             photos.append(ph_obj)
         photos.sort(key=lambda x: x.number)
