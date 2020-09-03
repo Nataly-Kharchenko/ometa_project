@@ -4,7 +4,7 @@ from ometa.models import Photographer, Album, Photo, Director, Video, Work, Abou
 
 
 def home(request):
-    video = Preview_Video.abjects.get(isTitle=True)
+    video = Preview_Video.objects.get(isTitle=True)
 
     context = {
         "video": video

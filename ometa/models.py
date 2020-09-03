@@ -179,9 +179,9 @@ class Preview_Video(models.Model):
 
     @transaction.atomic
     def save(self, *args, **kwargs):
-        if self.isVisible:
-            About_U.objects.filter(isVisible=True).update(isVisible=False)
-        super(About_U, self).save(*args, **kwargs)
+        if self.isTitle:
+            Preview_Video.objects.filter(isTitle=True).update(isTitle=False)
+        super(Preview_Video, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
