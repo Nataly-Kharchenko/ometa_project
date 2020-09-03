@@ -4,8 +4,12 @@ from ometa.models import Photographer, Album, Photo, Director, Video, Work, Abou
 
 
 def home(request):
+    video = Preview_Video.abjects.get(isTitle=True)
 
-    return render(request, "partials/index.html")
+    context = {
+        "video": video
+    }
+    return render(request, "partials/index.html", context)
 
 
 def works(request):

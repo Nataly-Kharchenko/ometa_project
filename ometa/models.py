@@ -191,3 +191,8 @@ class Preview_Video(models.Model):
 
     def get_absolute_url(self):
         return "/%s/" %(self.id)
+
+    @property
+    def video_url(self):
+        if self.video and hasattr(self.video, 'url'):
+            return self.video.url

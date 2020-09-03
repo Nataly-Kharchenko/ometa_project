@@ -44,8 +44,7 @@
       <div class="main-screen centered-image full-screen">
         <div class="shadowed">
           <video class="fullscreen js-rnd-video" autoplay muted loop preload="auto" id="vid">
-              {% load static %}
-            <source src="{% static 'video/Jamala-Kryla.mp4' %}" type="video/mp4">
+            <source src="{{ video.video_url }}" type="video/mp4">
           </video>
         </div>
         <div class="backdrop"></div><a class="logo-link mobile-hide" href="{% url 'contacts' %}"><svg class="icon-logo logo">
