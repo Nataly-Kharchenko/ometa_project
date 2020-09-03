@@ -24,10 +24,10 @@ class Album(models.Model):
     photograph = models.ForeignKey(Photographer, on_delete=models.CASCADE, default=0, related_name="photograph")
 
     def __unicode__(self):
-        return self.name
+        return "Photographer: " + str(self.photograph.name) + " , album: " + str(self.name)
 
     def __str__(self):
-        return self.name
+        return "Photographer: " + str(self.photograph.name) + " , album: " + str(self.name)
 
     def get_absolute_url(self):
         return "/%s/" %(self.id)
@@ -40,10 +40,10 @@ class Photo(models.Model):
     isTitleImg = models.BooleanField(default=0)
 
     def __unicode__(self):
-        return "Album " + str(self.album.name) + ": photo " + str(self.number)
+        return "Photographer: " + str(self.album.photograph.name) + " , album: " + str(self.album.name) + " ,photo: " + str(self.number)
 
     def __str__(self):
-        return "Album " + str(self.album.name) + ": photo " + str(self.number)
+        return "Photographer: " + str(self.album.photograph.name) + " , album: " + str(self.album.name) + " ,photo: " + str(self.number)
 
     def get_absolute_url(self):
         return "directors/%i/" %(self.id)
