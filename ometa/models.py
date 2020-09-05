@@ -2,56 +2,53 @@ import os
 
 from django.db import models, transaction
 from phonenumber_field.modelfields import PhoneNumberField
+from sorl.thumbnail.templatetags.thumbnail import thumbnail
 
 
-class Photographer(models.Model):
-    number = models.IntegerField(default=0)
+class Preview_Video(models.Model):
     name = models.CharField(max_length=30, default='No name')
+    video = models.FileField(upload_to='preview_video', null=True, blank=True)
+    isTitle = models.BooleanField(default=True)
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        if self.isTitle:
+            Preview_Video.objects.filter(isTitle=True).update(isTitle=False)
+        super(Preview_Video, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return "photographers/%i/" %(self.id)
-
-
-class Album(models.Model):
-    number = models.IntegerField(default=0)
-    name = models.CharField(max_length=30, default="No name")
-    photograph = models.ForeignKey(Photographer, on_delete=models.CASCADE, default=0, related_name="photograph")
-
-    def __unicode__(self):
-        return "Photographer: " + str(self.photograph.name) + ", album: " + str(self.name)
-
-    def __str__(self):
-        return "Photographer: " + str(self.photograph.name) + ", album: " + str(self.name)
-
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
-
-
-class Photo(models.Model):
-    number = models.IntegerField(default=0)
-    photo = models.ImageField(null=True, blank=True, upload_to="photo/")
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, default=1, related_name="album")
-    isTitleImg = models.BooleanField(default=0)
-
-    def __unicode__(self):
-        return "Photographer: " + str(self.album.photograph.name) + ", album: " + str(self.album.name) + ", photo: " + str(self.number)
-
-    def __str__(self):
-        return "Photographer: " + str(self.album.photograph.name) + ", album: " + str(self.album.name) + ", photo: " + str(self.number)
-
-    def get_absolute_url(self):
-        return "directors/%i/" %(self.id)
 
     @property
-    def photo_url(self):
-        if self.photo and hasattr(self.photo, 'url'):
-            return self.photo.url
+    def video_url(self):
+        if self.video and hasattr(self.video, 'url'):
+            return self.video.url
+
+
+class Work(models.Model):
+    number = models.IntegerField(default=0)
+    name = models.CharField(max_length=120)
+    YOUTUBE = 'YouTube'
+    VIMEO = 'vimeo'
+    PLAYER_CHOICES = [
+        (YOUTUBE, 'YouTube'),
+        (VIMEO, 'vimeo')
+    ]
+    choice_player = models.CharField(max_length=7, choices=PLAYER_CHOICES, default=VIMEO)
+    link_for_video = models.CharField(max_length=120, default='Video is not loaded')
+    description = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    class Meta(object):
+        ordering = ['number']
 
 
 class Director(models.Model):
@@ -72,6 +69,17 @@ class Director(models.Model):
     def preview_url(self):
         if self.preview and hasattr(self.preview, 'url'):
             return self.preview.url
+
+    class Meta(object):
+        ordering = ['number']
+
+    def preview_image_url(self):
+        image_path = thumbnail(self.image, '60x60')
+        image_path = image_path.replace('\\', '/')  # Windows-Fix
+        return '<a href="' + str(self.id) + '/"><img src="' + str(self.preview_url) + '"/></a>'
+
+    preview_image_url.short_description = 'Thumbnail'
+    preview_image_url.allow_tags = True
 
 
 class Video(models.Model):
@@ -94,22 +102,13 @@ class Video(models.Model):
     def __str__(self):
         return "Director:" + str(self.director.name) + ", video:" + str(self.name)
 
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
+    class Meta(object):
+        ordering = ['number']
 
 
-class Work(models.Model):
+class Photographer(models.Model):
     number = models.IntegerField(default=0)
-    name = models.CharField(max_length=120)
-    YOUTUBE = 'YouTube'
-    VIMEO = 'vimeo'
-    PLAYER_CHOICES = [
-        (YOUTUBE, 'YouTube'),
-        (VIMEO, 'vimeo')
-    ]
-    choice_player = models.CharField(max_length=7, choices=PLAYER_CHOICES, default=VIMEO)
-    link_for_video = models.CharField(max_length=120, default='Video is not loaded')
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(max_length=30, default='No name')
 
     def __unicode__(self):
         return self.name
@@ -118,7 +117,46 @@ class Work(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return "/%s/" %(self.id)
+        return "photographers/%i/" %(self.id)
+
+    class Meta(object):
+        ordering = ['number']
+
+
+class Album(models.Model):
+    number = models.IntegerField(default=0)
+    name = models.CharField(max_length=30)
+    photograph = models.ForeignKey(Photographer, on_delete=models.CASCADE, default=1, related_name="photograph")
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    class Meta(object):
+        ordering = ['number']
+
+
+class Photo(models.Model):
+    number = models.IntegerField(default=0)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="photos")
+    photo = models.ImageField(upload_to="photo/", default='', null=True, blank=True)
+    isTitle = models.BooleanField(default=0)
+
+    def __unicode__(self):
+        return str(self.photo)
+
+    def __str__(self):
+        return str(self.photo)
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
+    class Meta(object):
+        ordering = ['number']
 
 
 class About_U(models.Model):
@@ -137,8 +175,17 @@ class About_U(models.Model):
     def __str__(self):
         return str(self.id)
 
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
+
+class Addres(models.Model):
+    email = models.EmailField(max_length=30, default='No email')
+    place = models.CharField(max_length=120, default='No address')
+    link_for_google_maps = models.CharField(max_length=120, default='No link')
+
+    def __unicode__(self):
+        return self.place
+
+    def __str__(self):
+        return self.place
 
 
 class Contact(models.Model):
@@ -152,47 +199,3 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
-
-
-class Addres(models.Model):
-    email = models.EmailField(max_length=30, default='No email')
-    place = models.CharField(max_length=120, default='No address')
-    link_for_google_maps = models.CharField(max_length=120, default='No link')
-
-    def __unicode__(self):
-        return self.place
-
-    def __str__(self):
-        return self.place
-
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
-
-
-class Preview_Video(models.Model):
-    name = models.CharField(max_length=30, default='No name')
-    video = models.FileField(upload_to='preview_video', null=True, blank=True)
-    isTitle = models.BooleanField(default=True)
-
-    @transaction.atomic
-    def save(self, *args, **kwargs):
-        if self.isTitle:
-            Preview_Video.objects.filter(isTitle=True).update(isTitle=False)
-        super(Preview_Video, self).save(*args, **kwargs)
-
-    def __unicode__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return "/%s/" %(self.id)
-
-    @property
-    def video_url(self):
-        if self.video and hasattr(self.video, 'url'):
-            return self.video.url
