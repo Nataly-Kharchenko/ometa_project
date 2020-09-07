@@ -94,10 +94,11 @@ def photo_artist(request, id=None):
     for al_obj in albums_list:
         photo = Photo.objects.filter(album=al_obj.id)
         for ph_obj in photo:
-            if ph_obj.number == 1:
-                first_photo_list.append(ph_obj)
+            # if ph_obj.number == 1:
+            #     first_photo_list.append(ph_obj)
             photos.append(ph_obj)
         photos.sort(key=lambda x: x.number)
+        first_photo_list.append(photos[0])
         photo_list.append([])
         for obj in photos:
             photo_list[i].append(obj)
