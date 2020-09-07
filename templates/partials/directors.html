@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+  <div class="artist-page-name">{{ error }}</div>
   <div class="artist js-artists">
     <div class="artists__previews-list"><a class="artists__preview-img js-artists-preview active" href="{{ active_director.get_absolute_url }}" title="{{ active_director.name }}" data-num="{{ active_director.id }}" style="background-image: url('{{ active_director.preview.url }}')"></a>
       {% for obj in directors %}

@@ -9,6 +9,7 @@
     <div class="contacts">
       <div class="contacts__info">
         <h1 class="contacts__title">Contact</h1>
+        <span class="contacts__address">{{ error_address }}</span>
         {% for obj in addresses %}
           <a class="contacts__main-contact" href="mailto:{{ obj.email }}">{{ obj.email }}</a>
           <span class="contacts__address">{{ obj.place }}</span>
@@ -16,6 +17,7 @@
         {% endfor %}
       </div>
       <div class="contacts__list">
+        <div class="contacts__name">{{ error_cont }}</div>
         {% for obj in contacts %}
           <div class="contacts__item-block">
             <div class="contacts__name">{{ obj.name }}</div>

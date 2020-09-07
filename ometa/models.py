@@ -2,7 +2,6 @@ import os
 
 from django.db import models, transaction
 from phonenumber_field.modelfields import PhoneNumberField
-from sorl.thumbnail.templatetags.thumbnail import thumbnail
 
 
 class Preview_Video(models.Model):
@@ -72,14 +71,6 @@ class Director(models.Model):
 
     class Meta(object):
         ordering = ['number']
-
-    def preview_image_url(self):
-        image_path = thumbnail(self.image, '60x60')
-        image_path = image_path.replace('\\', '/')  # Windows-Fix
-        return '<a href="' + str(self.id) + '/"><img src="' + str(self.preview_url) + '"/></a>'
-
-    preview_image_url.short_description = 'Thumbnail'
-    preview_image_url.allow_tags = True
 
 
 class Video(models.Model):

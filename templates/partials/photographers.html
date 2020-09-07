@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+  <div class="artist-page-name">{{ error }}</div>
   <div class="artists js-artists">
     <div class="artists__previews-list"><a class="artists__link artists__preview-img js-artists-preview active" href="{{ active_artist.get_absolute_url }}" title="{{ active_artist.name }}" data-num="{{ active_artist.id }}" style="background-image: url('{{ active_photo.photo_url }}')"></a>
        {% for obj in photos %}
