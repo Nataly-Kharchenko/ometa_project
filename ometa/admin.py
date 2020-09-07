@@ -61,6 +61,7 @@ class PhotographerAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Album)
 class AlbumAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ('number', 'name', 'photograph')
     form = AlbumAdminForm
     inlines = [PhotoInline]
 
