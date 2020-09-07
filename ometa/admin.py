@@ -7,6 +7,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # from .models import Photographer, Album, Album, Director, Video, Work, About_U, Contact, Addres, Preview_Video
 from django.template.loader import get_template
+from django.utils.safestring import mark_safe
 
 from .forms import AlbumAdminForm
 from .models import *
@@ -37,15 +38,22 @@ class VideoInline(SortableInlineAdminMixin, admin.TabularInline):
 
 @admin.register(Director)
 class DirectorAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('number', 'name', 'preview')
+    list_display = ('number', 'name', 'preview_img')
+    readonly_fields = ["preview_img"]
+
+    def preview_img(self, obj):
+        return mark_safe(f'<img src="{obj.preview_url}" height="200">')
     inlines = [VideoInline]
     pass
 
 
 @admin.register(Photo)
 class PhotoAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('number', 'album', 'photo')
-    pass
+    list_display = ('number', 'album', 'preview')
+    readonly_fields = ["preview"]
+
+    def preview(self, obj):
+        return mark_safe(f'<img src="{ obj.photo_url }" height="200">')
 
 
 class PhotoInline(SortableInlineAdminMixin, admin.TabularInline):
