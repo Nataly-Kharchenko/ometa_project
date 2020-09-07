@@ -149,6 +149,15 @@ class Photo(models.Model):
     class Meta(object):
         ordering = ['number']
 
+    def image_img(self):
+        if self.photo:
+            return u'' % self.photo.url
+        else:
+            return '(No photo)'
+
+    image_img.short_description = 'Thumb'
+    image_img.allow_tags = True
+
 
 class About_U(models.Model):
     information = models.TextField(null=True, blank=True)

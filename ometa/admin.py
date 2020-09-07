@@ -49,7 +49,7 @@ class DirectorAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Photo)
 class PhotoAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('number', 'album', 'preview')
+    list_display = ('number', 'album', 'preview', 'image_img')
     readonly_fields = ["preview"]
 
     def preview(self, obj):
