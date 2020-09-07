@@ -62,6 +62,7 @@ def photographers(request):
         for ph_obj in preview_photo:
             if ar_obj.id == ph_obj.album.photograph.id:
                 preview_photo_list.append(ph_obj)
+
     error_artists = ''
     error_preview = ''
 

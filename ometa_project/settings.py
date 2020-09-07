@@ -27,8 +27,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!afbls*yv9aps*49+3r)=vl5ekni*c
 # DEBUG = False
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-ALLOWED_HOSTS = ['powerful-thicket-88407.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['powerful-thicket-88407.herokuapp.com']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ometa',
     'phonenumber_field',
     'adminsortable2',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -51,8 +52,11 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'ometa_project.urls'
 

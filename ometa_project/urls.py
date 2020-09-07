@@ -39,3 +39,9 @@ def handler404(request, exeption):
     response = render('404.html', context)
     response.status_code = 404
     return response
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

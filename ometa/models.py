@@ -28,7 +28,7 @@ class Preview_Video(models.Model):
 
 
 class Work(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=120)
     YOUTUBE = 'YouTube'
     VIMEO = 'vimeo'
@@ -51,7 +51,7 @@ class Work(models.Model):
 
 
 class Director(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=30, default='No name')
     preview = models.ImageField(upload_to='directors_preview', null=True, blank=True)
 
@@ -74,7 +74,7 @@ class Director(models.Model):
 
 
 class Video(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=50, default='No name')
     YOUTUBE = 'YouTube'
     VIMEO = 'vimeo'
@@ -98,7 +98,7 @@ class Video(models.Model):
 
 
 class Photographer(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=30, default='No name')
 
     def __unicode__(self):
@@ -115,7 +115,7 @@ class Photographer(models.Model):
 
 
 class Album(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=30)
     photograph = models.ForeignKey(Photographer, on_delete=models.CASCADE, default=1, related_name="photograph")
 
@@ -130,7 +130,7 @@ class Album(models.Model):
 
 
 class Photo(models.Model):
-    number = models.IntegerField(default=0)
+    number = models.IntegerField(default=1)
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="photos")
     photo = models.ImageField(upload_to="photo/", default='', null=True, blank=True)
     isTitle = models.BooleanField(default=0)
