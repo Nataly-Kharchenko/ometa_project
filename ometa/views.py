@@ -65,9 +65,9 @@ def photographers(request):
     error_artists = ''
     error_preview = ''
 
-    if preview_photo_list:
+    if not preview_photo_list:
         error_preview = "Preview photo is not chosen!"
-    if photo_artists:
+    if not photo_artists:
         error_artists = "Photographers is not added!"
 
     context = {
