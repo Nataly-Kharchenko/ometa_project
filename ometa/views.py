@@ -62,17 +62,23 @@ def photographers(request):
         for ph_obj in preview_photo:
             if ar_obj.id == ph_obj.album.photograph.id:
                 preview_photo_list.append(ph_obj)
+    error_artists = ''
+    error_preview = ''
 
-    if preview_photo_list and photo_artists:
-        context = {
-            "photo_artists": photo_artists,
-            "photos": preview_photo_list,
-            "active_photo": preview_photo_list[0],
-            "active_artist": photo_artists[0]
-        }
-        return render(request, "partials/photographers.html", context)
-    else:
-        return render(request, "partials/photographers.html", context={"error": "Photographers is not added!"})
+    if preview_photo_list:
+        error_preview = "Preview photo is not chosen!"
+    if photo_artists:
+        error_artists = "Photographers is not added!"
+
+    context = {
+        "photo_artists": photo_artists,
+        "photos": preview_photo_list,
+        "active_photo": preview_photo_list[0],
+        "active_artist": photo_artists[0],
+        "error_artists": error_artists,
+        "error_preview": error_preview
+    }
+    return render(request, "partials/photographers.html", context)
 
 
 def photo_artist(request, id=None):
