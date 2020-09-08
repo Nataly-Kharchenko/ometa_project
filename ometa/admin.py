@@ -8,6 +8,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 # from .models import Photographer, Album, Album, Director, Video, Work, About_U, Contact, Addres, Preview_Video
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
+from easy_thumbnails.templatetags import thumbnail
 
 from .forms import AlbumAdminForm
 from .models import *
@@ -58,6 +59,12 @@ class PhotoAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 class PhotoInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Photo
+    fields = []
+    readonly_fields = ['preview']
+
+    def preview(self, obj):
+        return mark_safe(f'<img src="{obj.photo_url}" height="200">')
+
     extra = 0
 
 
@@ -72,6 +79,7 @@ class AlbumAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('number', 'name', 'photograph')
     form = AlbumAdminForm
     inlines = [PhotoInline]
+
 
     def save_related(self, request, form, formsets, change):
         super().save_related(request, form, formsets, change)

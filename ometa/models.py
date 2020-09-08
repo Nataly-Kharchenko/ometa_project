@@ -62,7 +62,7 @@ class Director(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return "directors/%i/" %(self.id)
+        return "directors/%i/" % self.id
 
     @property
     def preview_url(self):
@@ -108,7 +108,7 @@ class Photographer(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return "photographers/%i/" %(self.id)
+        return "photographers/%i/" % self.id
 
     class Meta(object):
         ordering = ['number']
@@ -148,6 +148,16 @@ class Photo(models.Model):
 
     class Meta(object):
         ordering = ['number']
+
+    # def image_img(self):
+    #     if self.photo:
+    #         from django.utils.safestring import mark_safe
+    #         return mark_safe(u'<a href="{0}" target="_blank"><img src="{0}" width="100"/></a>'.format(self.photo_url))
+    #     else:
+    #         return '(No photo)'
+    #
+    # image_img.short_description = 'Image'
+    # image_img.allow_tags = True
 
 
 class About_U(models.Model):
