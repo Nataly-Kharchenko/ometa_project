@@ -39,11 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ometa',
+
     'phonenumber_field',
     'adminsortable2',
-    'easy_thumbnails'
+    'easy_thumbnails',
+    'rest_framework',
     # 'debug_toolbar'
+
+    'ometa',
 ]
 
 MIDDLEWARE = [
