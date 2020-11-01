@@ -1,3 +1,5 @@
+rest_framework
+admin-multiupload==1.10
 appdirs==1.4.4
 asgiref==3.2.10
 certifi==2020.6.20
