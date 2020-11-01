@@ -24,7 +24,7 @@ from ometa.models import Contact
 urlpatterns = [
     path('', include('ometa.urls')),
     path('admin/', admin.site.urls),
-    path('ometa/', include('ometa.urls'))
+    # path('ometa/', include('ometa.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

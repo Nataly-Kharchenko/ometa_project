@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'adminsortable2',
     'easy_thumbnails',
+    # 'rest_framework',
     # 'debug_toolbar'
 
     'ometa',
