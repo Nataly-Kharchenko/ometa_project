@@ -1,14 +1,9 @@
-from django import forms
-from django.conf import settings
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # Register your models here.
 
-# from .models import Photographer, Album, Album, Director, Video, Work, About_U, Contact, Addres, Preview_Video
-from django.template.loader import get_template
 from django.utils.safestring import mark_safe
-from easy_thumbnails.templatetags import thumbnail
 
 from .forms import AlbumAdminForm
 from .models import *
@@ -80,7 +75,6 @@ class AlbumAdmin(SortableAdminMixin, admin.ModelAdmin):
     form = AlbumAdminForm
     inlines = [PhotoInline]
 
-
     def save_related(self, request, form, formsets, change):
         super().save_related(request, form, formsets, change)
         form.save_photos(form.instance)
@@ -96,6 +90,7 @@ class AboutUsAdmin(admin.ModelAdmin):
 class AddresAdmin(admin.ModelAdmin):
     list_display = ('place', 'email')
     pass
+
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
