@@ -3,7 +3,7 @@
 все необходимые пакеты данных находятся в файле requirements.txt
 на ubuntu можна установить с помощью команды pip3 install -r requirements.txt
 
-но не устанавлюваються два пакета так что я их сама добавляла этими командами:
+но могут не установиться три пакета, так что я их сама добавляла этими командами:
 pip3 install django-admin-sortable2
 pip3 install easy-thumbnails
 pip3 install django-phonenumber-field[phonenumbers]
