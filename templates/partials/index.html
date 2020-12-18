@@ -40,14 +40,115 @@
       document.createElement('picture');
     </script><!-- Header-->
     <header></header><!-- Main content-->
+
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="static/img/preload.jpg" id="bgvid"
+        class="video video1">
+        <source src="{{ video.video_url }}" type="video/mp4">
+        <source src="{{ video.video_url }}" type="video/webm">
+      </video>
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="static/img/img/preload.jpg" id="bgvid"
+        class="video video2">
+        <source src="{{ video.video_url }}" type="video/mp4">
+        <source src="{{ video.video_url }}" type="video/webm">
+      </video>
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="static/img/img/preload.jpg" id="bgvid"
+        class="video video3">
+        <source src="{{ video.video_url }}" type="video/mp4">
+        <source src="{{ video.video_url }}" type="video/webm">
+      </video>
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="static/img/img/preload.jpg" id="bgvid"
+        class="video video4">
+        <source src="{{ video.video_url }}" type="video/mp4">
+        <source src="{{ video.video_url }}" type="video/webm">
+      </video>
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="static/img/img/preload.jpg" id="bgvid"
+        class="video video5">
+        <source src="{{ video.video_url }}" type="video/mp4">
+        <source src="{{ video.video_url }}" type="video/webm">
+      </video>
+
     <main class="content" data-page="home">
       <div class="main-screen centered-image full-screen">
-        <div class="shadowed">
-          <div class="artist-page-name">{{ error }}</div>
-          <video class="fullscreen js-rnd-video" autoplay muted loop preload="auto" id="vid">
-            <source src="{{ video.video_url }}" type="video/mp4">
-          </video>
+        <div class="shadowed clip">
+          <div class="main-screen centered-image only-mobile full-screen"></div>
+          <div class="clip__video-wrap mobile-hide js-clips-block">
+            <div class="artist-page-name">{{ error }}</div>
+            <!-- <video class="fullscreen js-rnd-video" autoplay muted loop preload="auto" data-clip-num="1" id="vid">
+              <source src="{{ video.video_url }}" type="video/mp4">
+            </video> -->
+                <div class="clip__video-item active js-clip-wrapper">
+                  <video class="fullscreen" muted data-clip-num="0">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="clip__video-item js-clip-wrapper">
+                  <video class="fullscreen js-clip" muted data-clip-num="1">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="clip__video-item active js-clip-wrapper">
+                  <video class="fullscreen" muted data-clip-num="2">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="clip__video-item js-clip-wrapper">
+                  <video class="fullscreen js-clip" muted data-clip-num="3">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="clip__video-item active js-clip-wrapper">
+                  <video class="fullscreen" muted data-clip-num="4">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="clip__video-item js-clip-wrapper">
+                  <video class="fullscreen js-clip" muted data-clip-num="5">
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                  </video>
+                </div>
+                </div>
+                  <div class="clip__controls mobile-hide js-clip-controls">
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl active" data-control-num="0">1</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="1">2</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="2">3</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="3">4</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="4">5</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="5">6</span></li>
+                    </ul>
+                  </div>
         </div>
+                  <div class="clip__controls mobile-hide js-clip-controls">
+                    <!-- class "mobile-hide" for hide on mobile-->
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl active" data-control-num="0">1</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="1">2</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="2">3</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="3">4</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="4">5</span></li>
+                    </ul>
+                    <ul class="clip__control-item">
+                      <li><span class="clip__link js-clip-ctrl" data-control-num="5">6</span></li>
+                    </ul>
+                  </div>
         <div class="backdrop"></div><a class="logo-link mobile-hide" href="{% url 'contacts' %}"><svg class="icon-logo logo">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-logo"></use>
           </svg></a>
@@ -66,13 +167,46 @@
           <li class="nav__item"><a class="nav__link" href="{% url 'about_us' %}" title="About Us">About Us</a></li>
           <li class="nav__item"><a class="nav__link" href="{% url 'contacts' %}" title="Contacts">Contacts</a></li>
         </ul>
+        
         <ul class="social">
           <li class="social__item"><a class="social__link" href="mailto:hookup@omertacreation.com" title="hookup@omertacreation.com">Email</a></li>
           <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank" title="https://vimeo.com/user94596369">vimeo</a></li>
           <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank" title="https://instagram.com/omertacreation">instagram</a></li>
-        </ul><a class="logo-link production-logo only-mobile" href="{% url 'works' %}"><svg class="icon-logo logo">
+        </ul>
+
+        <a class="logo-link production-logo only-mobile" href="{% url 'works' %}">
+          <svg class="icon-logo logo">123
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-logo"></use>
-          </svg></a>
+          </svg>
+        </a>
+
+        <div class="footer-index">
+          <div class="mobvideo-ctrls">
+            <div class="mobvideo-ctrls__block">
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-1 mobvideo-ctrls__active"></div>
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-2"></div>
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-3"></div>
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-4"></div>
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-5"></div>
+            </div>
+          </div>
+
+          <ul class="social-device social-device__index">
+            <li class="social__item"><a class="social__link" href="mailto:hookup@omertacreation.com"
+                title="hookup@omertacreation.com">
+                <img src="{% static 'img/ui/social-icons/email-icon.png' %}" />
+              </a></li>
+            <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank"
+                title="https://vimeo.com/user94596369">
+                <img src="{% static 'img/ui/social-icons/vimeo-icon.png' %}" />
+              </a></li>
+            <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank"
+                title="https://instagram.com/omertacreation">
+                <img src="{% static 'img/ui/social-icons/instagram-icon.png' %}" />
+              </a></li>
+          </ul>
+          <!-- <a class="logo-link production-logo only-mobile" href="/works.html"><img class="icon-logo logo" src="./static/img/omerta-logo.png" /></a> -->
+        </div>
       </div>
     </main><!-- Footer-->
     <footer></footer><!-- Scripts-->
@@ -81,5 +215,39 @@
     <script type="text/javascript" src="{% static 'js/index.jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/index.swiper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/index.min.js' %}"></script>
+      <script type="text/javascript">
+        $('.video').hide();
+        $('.video1').show();
+        $('.mobvideo-ctrls-1').click(function () {
+          $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+          $(this).addClass('mobvideo-ctrls__active');
+          $('.video').hide();
+          $('.video1').show();
+        });
+        $('.mobvideo-ctrls-2').click(function () {
+          $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+          $(this).addClass('mobvideo-ctrls__active');
+          $('.video').hide();
+          $('.video2').show();
+        });
+        $('.mobvideo-ctrls-3').click(function () {
+          $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+          $(this).addClass('mobvideo-ctrls__active');
+          $('.video').hide();
+          $('.video3').show();
+        });
+        $('.mobvideo-ctrls-4').click(function () {
+          $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+          $(this).addClass('mobvideo-ctrls__active');
+          $('.video').hide();
+          $('.video4').show();
+        });
+        $('.mobvideo-ctrls-5').click(function () {
+          $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+          $(this).addClass('mobvideo-ctrls__active');
+          $('.video').hide();
+          $('.video5').show();
+        });
+      </script>
  </body>
 </html>
