@@ -3,12 +3,15 @@ from django.shortcuts import render, get_object_or_404
 
 from ometa.models import *
 
+
 def home(request):
     try:
-        video = Preview_Video.objects.get(isTitle=True)
+        video_list = Preview_Video.objects.all().order_by('number')
+        # video = Preview_Video.objects.get(isTitle=True)
 
         context = {
-            "video": video
+            "videos": video_list[1:],
+            "preview_video": video_list[0]
         }
     except ObjectDoesNotExist:
         context = {

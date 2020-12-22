@@ -6,15 +6,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Preview_Video(models.Model):
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=30, default='No name')
     video = models.FileField(upload_to='preview_video', null=True, blank=True)
-    isTitle = models.BooleanField(default=True)
-
-    @transaction.atomic
-    def save(self, *args, **kwargs):
-        if self.isTitle:
-            Preview_Video.objects.filter(isTitle=True).update(isTitle=False)
-        super(Preview_Video, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name

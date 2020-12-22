@@ -11,7 +11,7 @@ from .models import *
 
 @admin.register(Preview_Video)
 class PreviewVideoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'isTitle')
+    list_display = ('number', 'name')
     pass
 
 

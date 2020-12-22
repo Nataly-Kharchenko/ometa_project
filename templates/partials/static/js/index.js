@@ -126,9 +126,10 @@ var Common = exports.Common = function () {
       var $foldersSliders = $('.js-folder-slider');
       var $allFoldersWrap = $('.js-all-folders-wrap');
       var $allSlides = void 0;
+      var mySwiper = void 0;
 
       if ($previewSlider.length) {
-        new Swiper('.js-preview-slider', {
+        mySwiper = new Swiper('.js-preview-slider', {
           direction: 'horizontal',
           slidesPerView: 2,
           spaceBetween: spaceBetween,
@@ -223,6 +224,16 @@ var Common = exports.Common = function () {
           }
         });
       }
+
+      if (document.querySelector('[data-page=\'works\']')) {
+        var url = new URL(location.href);
+        var searchParams = new URLSearchParams(url.search);
+        var vnumParam = searchParams.get('vnum');
+
+        if (vnumParam) {
+          mySwiper.slideTo(vnumParam - 1);
+        }
+      }
     }
   }, {
     key: 'initVimeoVideos',
@@ -256,7 +267,7 @@ var Common = exports.Common = function () {
 
       this.$mainIframeVideo.attr('src', fullPathToVideo);
 
-      console.log('fullPathToVideo', fullPathToVideo);
+      // console.log('fullPathToVideo', fullPathToVideo);
 
       // var iframe = document.querySelector('#js-rnd-video');
       // var player = new Vimeo.Player(iframe);
@@ -276,6 +287,75 @@ var Common = exports.Common = function () {
       //   this.$mainIframeVideo.css('height', (height / width * 100).toFixed(2) + 'vw');
       //   this.$mainIframeVideo.css('min-width', (width / height * 100).toFixed(2) + 'vh');
       // });
+    }
+  }, {
+    key: 'clipsInit',
+    value: function clipsInit() {
+      var clipsVideoBlock = document.querySelector('.js-clips-block');
+
+      if (clipsVideoBlock) {
+        var allClipsWrappers = clipsVideoBlock.querySelectorAll('.js-clip-wrapper');
+        var allClipsVideo = clipsVideoBlock.querySelectorAll('.js-clip-wrapper video');
+        var clipsControls = document.querySelectorAll('.js-clip-controls .js-clip-ctrl');
+        var countOfClips = allClipsVideo.length;
+        var firstClip = allClipsVideo[0];
+        var activeClip = firstClip;
+
+        // after the end of one video, start the next
+        allClipsVideo.forEach(function (clip, currIdx) {
+          clip.addEventListener('ended', function (e) {
+            var nextIdx = (currIdx + 1) % countOfClips;
+            var nextClip = allClipsVideo[nextIdx];
+            activeClip = nextClip;
+
+            if (nextClip && nextClip.play) {
+              clipsControls[nextIdx].classList.add('active');
+              allClipsWrappers[nextIdx].classList.add('active');
+              nextClip.play();
+
+              clipsControls[currIdx].classList.remove('active');
+              allClipsWrappers[currIdx].classList.remove('active');
+            }
+          });
+        });
+
+        // nav-buttons for clips
+        clipsControls.forEach(function (ctrl) {
+          ctrl.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var dataNum = ctrl.dataset.controlNum;
+            var currIdx = activeClip.dataset.clipNum;
+
+            if (dataNum) {
+              if (currIdx === dataNum) {
+                activeClip.currentTime = 0;
+                activeClip.play();
+              } else {
+                var nextIdx = dataNum % countOfClips;
+                var nextClip = allClipsVideo[nextIdx];
+
+                if (nextClip && nextClip.play) {
+                  clipsControls[nextIdx].classList.add('active');
+                  allClipsWrappers[nextIdx].classList.add('active');
+                  nextClip.play();
+
+                  activeClip.pause();
+                  activeClip.currentTime = 0;
+                  clipsControls[currIdx].classList.remove('active');
+                  allClipsWrappers[currIdx].classList.remove('active');
+                  activeClip = nextClip;
+                }
+              }
+            }
+          });
+        });
+
+        // start play first clip
+        if (firstClip && firstClip.play) {
+          firstClip.play();
+        }
+      }
     }
 
     // recalc matrix (округление значений к integer)
@@ -307,7 +387,8 @@ var Common = exports.Common = function () {
       this.navigation();
       this.artistsBlockInit();
       this.initPreviewSlider();
-      this.initVimeoVideos();
+      this.clipsInit();
+      // this.initVimeoVideos();
     }
   }]);
 
