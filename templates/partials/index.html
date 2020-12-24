@@ -39,31 +39,54 @@
     </script><!-- Header-->
     <header></header><!-- Main content-->
     {% block body %}
+    <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="{% static 'img/preload.jpg' %}"
+      id="bgvid" class="video video1">
+      <source src="{{ preview_video.video_url }}" type="video/mp4">
+      <source src="{{ preview_video.video_url }}" type="video/webm">
+    </video>
+    {% for obj in videos %}
+      <video preload="auto" muted playsinline autoplay="autoplay" loop="loop" poster="{% static 'img/preload.jpg' %}" id="bgvid"
+        class="video video{{ obj.number }}">
+        <source src="{{ obj.video_url }}" type="video/mp4">
+        <source src="{{ obj.video_url }}" type="video/webm">
+      </video>
+    {% endfor %}
+
     <main class="content" data-page="home">
       <div class="main-screen centered-image full-screen">
         <div class="shadowed clip">
           <div class="main-screen centered-image only-mobile full-screen"></div>
           <div class="clip__video-wrap mobile-hide js-clips-block">
-          <div class="clip__video-item active js-clip-wrapper"><video class="fullscreen" autoplay muted loop preload="auto" data-clip-num="{{ preview_video.id }}">
-             <source src="{{ preview_video.video_url }}" type="video/mp4"></video></div>
+          <div class="clip__video-item active js-clip-wrapper">
+            <video class="fullscreen" muted data-clip-num="0">
+             <source src="{{ preview_video.video_url }}" type="video/mp4">
+            </video>
+          </div>
             {% for obj in videos %}
-                <div class="clip__video-item js-clip-wrapper"><video class="fullscreen" muted data-clip-num="{{ obj.id }}">
-                    <source src="{{ obj.video_url }}" type="video/mp4"></video></div>
+                <div class="clip__video-item js-clip-wrapper">
+                  <video class="fullscreen" muted data-clip-num="{{ obj.number | add:-1 }}">
+                    <p>{{ obj.number }}</p>
+                    <source src="{{ obj.video_url }}" type="video/mp4">
+                  </video>
+                </div>
             {% endfor %}
           </div>
           <div class="clip__controls mobile-hide js-clip-controls">
           <ul class="clip__control-item">
-            <li><span class="clip__link js-clip-ctrl active" data-control-num="{{ preview_video.id }}">{{ preview_video.id }}</span></li>
+            <li><span class="clip__link js-clip-ctrl active" data-control-num="0">{{ preview_video.number }}</span></li>
           </ul>
             {% for obj in videos %}
               <ul class="clip__control-item">
-                  <li><span class="clip__link js-clip-ctrl " data-control-num="{{ obj.id }}">{{ obj.id }}</span></li>
-                </ul>
+                <li><span class="clip__link js-clip-ctrl " data-control-num="{{ obj.number | add:-1 }}">{{ obj.number }}</span></li>
+              </ul>
             {% endfor %}
           </div>
         </div>
         {% load static %}
-        <div class="backdrop"></div><a class="logo-link production-logo" href="{% url 'contacts' %}"><img class="icon-logo logo" src="{% static 'img/omerta-logo.png' %}" /></a>
+        <div class="backdrop"></div>
+        <a class="logo-link production-logo" href="{% url 'contacts' %}">
+          <img class="icon-logo logo" src="{% static 'img/omerta-logo.png' %}" />
+        </a>
         <div class="burger js-matrix">
           <div class="burger__body js-burger">
             <div class="burger__line"></div>
@@ -84,17 +107,31 @@
           <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank" title="https://vimeo.com/user94596369">vimeo</a></li>
           <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank" title="https://instagram.com/omertacreation">instagram</a></li>
         </ul>
-        <ul class="social-device">
-          <li class="social__item"><a class="social__link" href="mailto:hookup@omertacreation.com" title="hookup@omertacreation.com">
-          	<img src="{% static 'img/email-icon.png' %}" />
-          </a></li>
-          <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank" title="https://vimeo.com/user94596369">
-          	<img src="{% static 'img/vimeo-icon.png' %}" />
-          </a></li>
-          <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank" title="https://instagram.com/omertacreation">
-          	<img src="{% static 'img/instagram-icon.png' %}" />
-          </a></li>
-        </ul><a class="logo-link production-logo only-mobile" href="{% url 'works' %}"><img class="icon-logo logo" src="{% static 'img/omerta-logo.png' %}" /></a>
+        <div class="footer-index">
+          <div class="mobvideo-ctrls">
+            <div class="mobvideo-ctrls__block">
+              <div class="mobvideo-ctrls__item mobvideo-ctrls-1 mobvideo-ctrls__active"></div>
+              {% for obj in videos %}
+                <div class="mobvideo-ctrls__item mobvideo-ctrls-{{ obj.number }} "></div>
+              {% endfor %}
+            </div>
+          </div>
+          <ul class="social-device social-device__index">
+            <li class="social__item"><a class="social__link" href="mailto:hookup@omertacreation.com"
+                title="hookup@omertacreation.com">
+                <img src="{% static 'img/social-icons/email-icon.png' %}" />
+              </a></li>
+            <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank"
+                title="https://vimeo.com/user94596369">
+                <img src="{% static 'img/social-icons/vimeo-icon.png' %}" />
+              </a></li>
+            <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank"
+                title="https://instagram.com/omertacreation">
+                <img src="{% static 'img/social-icons/instagram-icon.png' %}" />
+              </a></li>
+          </ul>
+          <!-- <a class="logo-link production-logo only-mobile" href="/works.html"><img class="icon-logo logo" src="./static/img/omerta-logo.png" /></a> -->
+        </div>
       </div>
     </main><!-- Footer-->
     {% endblock %}
@@ -104,5 +141,63 @@
     <script type="text/javascript" src="{% static 'js/index.jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/index.swiper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript">
+      $('.video').hide();
+      $('.video1').show();
+      $('.mobvideo-ctrls-0').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video1').show();
+      });
+      $('.mobvideo-ctrls-1').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video1').show();
+      });
+      $('.mobvideo-ctrls-2').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video2').show();
+      });
+      $('.mobvideo-ctrls-3').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video3').show();
+      });
+      $('.mobvideo-ctrls-4').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video4').show();
+      });
+      $('.mobvideo-ctrls-5').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video5').show();
+      });
+      $('.mobvideo-ctrls-6').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video5').show();
+      });
+      $('.mobvideo-ctrls-7').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video5').show();
+      });
+      $('.mobvideo-ctrls-8').click(function () {
+        $('.mobvideo-ctrls__item').removeClass('mobvideo-ctrls__active');
+        $(this).addClass('mobvideo-ctrls__active');
+        $('.video').hide();
+        $('.video5').show();
+      });
+    </script>
   </body>
 </html>

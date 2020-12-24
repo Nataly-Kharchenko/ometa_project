@@ -20,7 +20,7 @@
     <meta name="description" content="Omerta is a production crew based in Kiev. Commercials // Music video. Production service // Directors // Photographers in Ukraine. @omertacreation">
     <meta name="og:description" content="Production company based in Kiev, Ukraine. @omertacreation">
     {% load static %}
-    <link href="{% static 'css/index.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
     {% load static %}
     <link rel="icon" href="{% static 'favicon.ico' %}">
     {% block head %}
@@ -44,9 +44,10 @@
         {% block body %}
 
         {% endblock %}
-        <div class="backdrop"></div><a class="logo-link" href="{% url 'home' %}"><svg class="icon-logo logo">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-logo"></use>
-          </svg></a>
+        <div class="backdrop"></div>
+        <a class="logo-link production-logo" href="{% url 'home' %}">
+          <img class="icon-logo logo" src="{% static 'img/omerta-logo.png' %}" />
+        </a>
         <div class="burger js-matrix">
           <div class="burger__body js-burger">
             <div class="burger__line"></div>
@@ -67,6 +68,20 @@
           <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank" title="https://vimeo.com/user94596369">vimeo</a></li>
           <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank" title="https://instagram.com/omertacreation">instagram</a></li>
         </ul>
+        <ul class="social-device">
+          <li class="social__item"><a class="social__link" href="mailto:hookup@omertacreation.com"
+              title="hookup@omertacreation.com">
+              <img src="{% static 'img/social-icons/email-icon.png' %}" />
+            </a></li>
+          <li class="social__item"><a class="social__link" href="https://vimeo.com/user94596369" target="_blank"
+              title="https://vimeo.com/user94596369">
+              <img src="{% static 'img/social-icons/vimeo-icon.png' %}" />
+            </a></li>
+          <li class="social__item"><a class="social__link" href="https://instagram.com/omertacreation" target="_blank"
+              title="https://instagram.com/omertacreation">
+              <img src="{% static 'img/social-icons/instagram-icon.png' %}" />
+            </a></li>
+        </ul>
       </div>
     </main><!-- Footer-->
     <footer></footer><!-- Scripts-->
@@ -74,6 +89,6 @@
     {% load static %}
     <script type="text/javascript" src="{% static 'js/index.jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/index.swiper.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/index.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 </body>
 </html>

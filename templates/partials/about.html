@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-  <div class="main-screen centered-image full-screen" style="background-image: url(./static/img/about-bg.jpg)"></div>
+{% load static %}
+  <div class="main-screen centered-image full-screen" style="background-image: url({% static 'img/about-bg.jpg' %})"></div>
   <div class="capability">
     <div class="capability__text">{{ error }}</div>
     <div class="capability__text">{{ about_us.information | linebreaks }}</div>
