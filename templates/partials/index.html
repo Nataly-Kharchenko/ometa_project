@@ -45,8 +45,8 @@
           <div class="main-screen centered-image only-mobile full-screen"></div>
           <div class="clip__video-wrap js-clips-block">
           <div class="clip__video-item active js-clip-wrapper">
-            <video class="fullscreen" preload="metadata" muted playsinline loop autoplay data-clip-num="0" type="video/mp4">
-             <source src="{{ preview_video.video_url }}" muted playsinline loop autoplay type="video/mp4">
+            <video class="fullscreen" preload="metadata" playsinline loop autoplay data-clip-num="0">
+             <source src="{{ preview_video.video_url }}" type="video/mp4">
             </video>
             <div class="signature only-mobile">
               <span class="first-part__signature">{{ preview_video.name }}</span>
@@ -55,9 +55,9 @@
           </div>
             {% for obj in videos %}
                 <div class="clip__video-item js-clip-wrapper">
-                  <video class="fullscreen" preload="metadata" muted playsinline loop autoplay data-clip-num="{{ obj.number | add:-1 }}" type="video/mp4">
+                  <video class="fullscreen" preload="metadata" playsinline loop autoplay data-clip-num="{{ obj.number | add:-1 }}">
                     <p>{{ obj.number }}</p>
-                    <source src="{{ obj.video_url }}" muted playsinline loop autoplay type="video/mp4">
+                    <source src="{{ obj.video_url }}" type="video/mp4">
                   </video>
                   <div class="signature only-mobile">
                     <span class="first-part__signature">{{ obj.name }}</span>
