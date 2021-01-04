@@ -8,7 +8,7 @@
       <div class="main-screen full-screen">
          <div class="artist-page-name">{{ artist.name }}</div>
          <div class="preview-slider">
-            <div class="swiper-container js-preview-slider swiper-container-horizontal swiper-container-android">
+            <div class="swiper-container js-photo-slider swiper-container-horizontal swiper-container-android">
                <div class="swiper-wrapper">
                      {% for obj in active_photos %}
                         <div class="swiper-slide">
@@ -27,7 +27,7 @@
          <a class="back-button back-to-list" href="{% url 'photographers' %}">Back to all</a>
          <div class="folders-sliders js-all-folders-wrap">
          {% for ph_obj in photos %}
-         <div class="swiper-container folder-slider js-folder-slider" data-num="{{ ph_obj.0.album.id }}">
+         <div class="swiper-container folder-slider js-folder-slider" data-num="{{ ph_obj.0.album.number }}">
             <div class="swiper-wrapper">
                {% for obj in ph_obj %}
                   <div class="swiper-slide">

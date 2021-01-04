@@ -773,6 +773,27 @@ button.swiper-pagination-bullet {
 .swiper-pagination-lock {
   display: none;
 }
+/* Signature */
+  .signature {
+    padding-left: 30px;
+    position: fixed;
+    bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Montserrat Regular', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    z-index:1;
+  }
+  .signature>.second-part__signature {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    margin-left: 10px;
+  }
 
 /* Scrollbar */
 .swiper-scrollbar {
@@ -2040,6 +2061,46 @@ iframe.fullscreen {
   z-index: 1;
 }
 @media only screen and (max-width: 960px) {
+  .clip__link {
+    font-size: 0;
+    padding: 1px 5px;
+    width: 13px;
+    height: 4px;
+    border: 1px solid #D3D3D3;
+    border-radius: 15px;
+    background-color: transparent;
+    margin-right: 8px;
+    cursor: pointer;
+    left: 32px;
+  }
+  .clip__link.active {
+    background-color: white;
+  }
+  .clip__control-item + .clip__control-item {
+    margin-left: 0px;
+  }
+  .clip__controls {
+    left: 5px;
+  }
+  .signature {
+    padding-left: 30px;
+    position: fixed;
+    bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Montserrat Regular', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+  }
+  .signature>.second-part__signature {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    margin-left: 10px;
+  }
   .preview-slider {
     height: 400px;
   }
@@ -2057,7 +2118,7 @@ iframe.fullscreen {
     z-index: 1;
     opacity: 0.8;
     background-color: #000000;
-}
+  }
   .centered-image {
     background-image: url("../img/home-table-bg.gif");
   }
@@ -2071,8 +2132,7 @@ iframe.fullscreen {
     right: inherit;
     text-align: right;
     position: absolute;
-    bottom: 85px;
-    padding-right: 10px;
+    padding-right: 20px;
   }
   .main-center-text {
     display: flex;
@@ -2476,12 +2536,6 @@ video#bgvid {
 @media only screen and (max-width: 960px) {
   .mobvideo-ctrls{
     display: flex;
-  }
-  .social-device__index{
-    display: flex;
-    width: 100px;
-    position: static;
-    justify-content: flex-end;
   }
   .footer-index{
     padding-left: 30px;

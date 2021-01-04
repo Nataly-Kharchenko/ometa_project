@@ -123,10 +123,12 @@ webpackJsonp([0],[
         var nextVisibleWidth = 80;
         var spaceBetween = (window.innerWidth - slideWidth) / 2;
         var $previewSlider = $('.js-preview-slider');
+        var $photoSlider = $('.js-photo-slider');
         var $foldersSliders = $('.js-folder-slider');
         var $allFoldersWrap = $('.js-all-folders-wrap');
         var $allSlides = void 0;
         var mySwiper = void 0;
+        var mySwiper2 = void 0;
   
         if ($previewSlider.length) {
           mySwiper = new Swiper('.js-preview-slider', {
@@ -183,25 +185,111 @@ webpackJsonp([0],[
               // when window width is <= 450
              
            
-              600: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                slidesOffsetBefore: 10,
-                slidesOffsetAfter: 10,
-                centeredSlides: true,
+              // 600: {
+              //   slidesPerView: 1,
+              //   spaceBetween: 20,
+              //   slidesOffsetBefore: 10,
+              //   slidesOffsetAfter: 10,
+              //   centeredSlides: true,
+              // },
+              // 760: {
+              //   slidesPerView: 1,
+              //   slidesPerColumn: 1,
+              //   centeredSlides: true,
+              // },
+              // 960: {
+              //   slidesPerView: 3,
+              //   slidesPerColumn: 2,
+              //   spaceBetween: 18,
+              //   slidesOffsetBefore: 0,
+              //   slidesOffsetAfter: 0,
+              //   centeredSlides: false,
+              // }
+            
+             
+            },
+          });
+          $('.preview-slider__media').click(function () {
+            var $self = $(this);
+            var clickedIndex = parseInt($self.data('num'));
+            var $slide = $self.closest('.swiper-slide');
+  
+            if (clickedIndex > 0 && $slide.hasClass('o-active')) {
+              $allFoldersWrap.addClass('active');
+  
+              $foldersSliders.removeClass('active').filter(function () {
+                return $(this).data('num') == clickedIndex;
+              }).addClass('active');
+            }
+          });
+  
+          $foldersSliders.each(function (i, el) {
+            initSlider(el);
+          });
+  
+          $('.js-close-folder').click(function () {
+            $allFoldersWrap.removeClass('active');
+            $foldersSliders.removeClass('active');
+          });
+        }
+
+        if ($photoSlider.length) {
+            mySwiper2 = new Swiper('.js-photo-slider', {
+            direction: 'horizontal',
+            slidesPerView: 1,
+            spaceBetween: spaceBetween,
+            speed: 700,
+            centeredSlides: true,
+            slideToClickedSlide: true,
+
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            },
+
+            on: {
+              init: function init() {
+                $allSlides = $previewSlider.find('.swiper-slide');
+                $allSlides.eq(this.activeIndex).addClass('o-active');
               },
-              760: {
-                slidesPerView: 1,
-                slidesPerColumn: 1,
-                centeredSlides: true,
+              click: function click() {
+                var _this2 = this;
+                var clickedIndex = this.clickedIndex + 1;
+                if (clickedIndex > 0) {
+                  $allSlides.removeClass('o-active');
+                  setTimeout(function () {
+                    _this2.clickedSlide.classList.add('o-active');
+                  }, 200);
+                }
+                // let clickedIndex = this.clickedIndex + 1;
+                // if (clickedIndex > 0 && this.clickedSlide.classList.contains('swiper-slide-active')) {
+                //   $allFoldersWrap.addClass('active');
+                //   $foldersSliders
+                //     .removeClass('active')
+                //     .filter(function () {
+                //       return $(this).data('num') == clickedIndex;
+                //     }).addClass('active');
+                // }
               },
+              slideChange: function slideChange() {
+                $allSlides.removeClass('o-active');
+                var activeIndex = this.activeIndex;
+                setTimeout(function () {
+                  $allSlides.eq(activeIndex).addClass('o-active');
+                }, 200);
+              }
+            },
+  
+            breakpoints: {
+              // when window width is <= 960
+            
               960: {
-                slidesPerView: 3,
-                slidesPerColumn: 2,
-                spaceBetween: 18,
-                slidesOffsetBefore: 0,
-                slidesOffsetAfter: 0,
-                centeredSlides: false,
+            direction: 'horizontal',
+            slidesPerView: 1,
+            spaceBetween: spaceBetween,
+            speed: 700,
+            centeredSlides: true,
+            slideToClickedSlide: true,
               }
             
              
@@ -244,16 +332,7 @@ webpackJsonp([0],[
             }
           });
         }
-  
-        if (document.querySelector('[data-page=\'works\']')) {
-          var url = new URL(location.href);
-          var searchParams = new URLSearchParams(url.search);
-          var vnumParam = searchParams.get('vnum');
-  
-          if (vnumParam) {
-            mySwiper.slideTo(vnumParam - 1);
-          }
-        }
+
       }
     }, {
       key: 'initVimeoVideos',
