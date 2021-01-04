@@ -45,7 +45,7 @@
           <div class="main-screen centered-image only-mobile full-screen"></div>
           <div class="clip__video-wrap js-clips-block">
           <div class="clip__video-item active js-clip-wrapper">
-            <video class="fullscreen" muted data-clip-num="0">
+            <video class="fullscreen" muted controls="true" data-clip-num="0">
              <source src="{{ preview_video.video_url }}" type="video/mp4">
             </video>
             <div class="signature only-mobile">
@@ -55,7 +55,7 @@
           </div>
             {% for obj in videos %}
                 <div class="clip__video-item js-clip-wrapper">
-                  <video class="fullscreen" muted data-clip-num="{{ obj.number | add:-1 }}">
+                  <video class="fullscreen" muted controls="true" data-clip-num="{{ obj.number | add:-1 }}">
                     <p>{{ obj.number }}</p>
                     <source src="{{ obj.video_url }}" type="video/mp4">
                   </video>
