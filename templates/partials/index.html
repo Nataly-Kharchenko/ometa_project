@@ -45,7 +45,7 @@
           <div class="main-screen centered-image only-mobile full-screen"></div>
           <div class="clip__video-wrap js-clips-block">
           <div class="clip__video-item active js-clip-wrapper">
-            <video class="fullscreen" poster="{% static 'img/preload.jpg' %}" preload="auto" autoplay loop muted playsinline data-clip-num="0">
+            <video class="fullscreen" poster="{% static 'img/preload.jpg' %}" muted playsinline data-clip-num="0">
               <source src="{{ preview_video.video_url }}" type="video/mp4">
               <source src="{{ preview_video.video_url }}" type="video/webm">
             </video>
@@ -56,7 +56,7 @@
           </div>
             {% for obj in videos %}
                 <div class="clip__video-item js-clip-wrapper">
-                  <video class="fullscreen" poster="{% static 'img/preload.jpg' %}" preload="auto" autoplay loop muted playsinline data-clip-num="{{ obj.number | add:-1 }}">
+                  <video class="fullscreen" poster="{% static 'img/preload.jpg' %}" muted playsinline data-clip-num="{{ obj.number | add:-1 }}">
                     <p>{{ obj.number }}</p>
                     <source src="{{ obj.video_url }}" type="video/mp4">
                     <source src="{{ obj.video_url }}" type="video/webm">
