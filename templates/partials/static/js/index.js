@@ -233,6 +233,11 @@ webpackJsonp([0],[
           });
         }
 
+
+
+
+        
+
         if ($photoSlider.length) {
             mySwiper2 = new Swiper('.js-photo-slider', {
             direction: 'horizontal',
@@ -284,16 +289,15 @@ webpackJsonp([0],[
               // when window width is <= 960
             
               960: {
-            direction: 'horizontal',
-            slidesPerView: 1,
-            spaceBetween: spaceBetween,
-            speed: 700,
-            centeredSlides: true,
-            slideToClickedSlide: true,
-              }
-            
-             
+                direction: 'horizontal',
+                slidesPerView: 1,
+                spaceBetween: spaceBetween,
+                speed: 700,
+                centeredSlides: true,
+                slideToClickedSlide: true,
+              }   
             },
+            
           });
           $('.preview-slider__media').click(function () {
             var $self = $(this);
@@ -332,8 +336,8 @@ webpackJsonp([0],[
             }
           });
         }
-
       }
+
     }, {
       key: 'initVimeoVideos',
       value: function initVimeoVideos() {
