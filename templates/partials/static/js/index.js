@@ -185,26 +185,26 @@ webpackJsonp([0],[
               // when window width is <= 450
              
            
-              // 600: {
-              //   slidesPerView: 1,
-              //   spaceBetween: 20,
-              //   slidesOffsetBefore: 10,
-              //   slidesOffsetAfter: 10,
-              //   centeredSlides: true,
-              // },
-              // 760: {
-              //   slidesPerView: 1,
-              //   slidesPerColumn: 1,
-              //   centeredSlides: true,
-              // },
-              // 960: {
-              //   slidesPerView: 3,
-              //   slidesPerColumn: 2,
-              //   spaceBetween: 18,
-              //   slidesOffsetBefore: 0,
-              //   slidesOffsetAfter: 0,
-              //   centeredSlides: false,
-              // }
+              600: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                slidesOffsetBefore: 10,
+                slidesOffsetAfter: 10,
+                centeredSlides: true,
+              },
+              760: {
+                slidesPerView: 1,
+                slidesPerColumn: 1,
+                centeredSlides: true,
+              },
+              960: {
+                slidesPerView: 3,
+                slidesPerColumn: 2,
+                spaceBetween: 18,
+                slidesOffsetBefore: 0,
+                slidesOffsetAfter: 0,
+                centeredSlides: false,
+              }
             
              
             },
