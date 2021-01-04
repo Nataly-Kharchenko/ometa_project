@@ -2081,6 +2081,7 @@ iframe.fullscreen {
   }
   .clip__controls {
     left: 5px;
+    bottom: 65px;
   }
   .signature {
     padding-left: 30px;
@@ -2128,7 +2129,7 @@ iframe.fullscreen {
   .social-device {
     display: inline-block;
     width: 100%;
-    bottom: 30px;
+    bottom: 55px;
     right: inherit;
     text-align: right;
     position: absolute;
