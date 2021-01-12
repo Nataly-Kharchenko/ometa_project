@@ -1573,7 +1573,7 @@ body, html {
   left: calc(50% - 312.5px);
 }
 
-.preview-slider {
+.preview-slider, .photo-slider {
   position: absolute;
   height: 370px;
   width: 100%;
@@ -1605,6 +1605,22 @@ body, html {
 }
 
 .preview-slider .swiper-slide {
+  width: 370px;
+  height: 370px;
+  position: relative;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.photo-slider  .swiper-slide {
   width: 370px;
   height: 370px;
   position: relative;
@@ -1940,7 +1956,7 @@ iframe.fullscreen {
 }
 
 @media only screen and (max-height: 750px), screen and (max-width: 1100px) {
-  .preview-slider {
+  .preview-slider, .photo-slider {
     top: 47%;
     height: 300px;
   }
@@ -1960,9 +1976,20 @@ iframe.fullscreen {
     width: 300px;
     height: 300px;
   }
+
+  .photo-slider  .swiper-slide {
+    width: 300px;
+    height: 300px;
+  }
+
   .preview-slider .swiper-containe {
     height: 300px;
   }
+
+  .photo-slider .swiper-containe {
+    height: 300px;
+  }
+
   .artist-page-name {
     -webkit-transform: translate(calc(-50% - 94px), calc(-50% - 205px));
     -ms-transform: translate(calc(-50% - 94px), calc(-50% - 205px));
@@ -2061,6 +2088,9 @@ iframe.fullscreen {
   z-index: 1;
 }
 @media only screen and (max-width: 960px) {
+  .margin-top {
+    margin-top: 40px;
+  }
   .clip__link {
     font-size: 0;
     padding: 1px 5px;
@@ -2111,7 +2141,7 @@ iframe.fullscreen {
   .works:before {
     content: ' ';
     display: block;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -2441,6 +2471,7 @@ iframe.fullscreen {
 
 }
 @media only screen and (max-width: 760px) {
+
   .contacts__title {
     display: none;
   }
@@ -2454,15 +2485,23 @@ iframe.fullscreen {
    font-size: 18px;
   }
   .preview-slider__media {
-    padding-left: 40vw;
     min-height: 21vw;
   }
+
+  .padding-left {
+    padding-left: 40vw;
+  }
+
   .preview-slider__title {
     top: 8vw;
     left: 4vw;
   }
 }
 @media only screen and (max-width: 600px) {
+  .margin-top {
+    margin-top: 0px;
+  }
+
   .contacts__title {
     font-size: 18px;
     margin-bottom: 10px;

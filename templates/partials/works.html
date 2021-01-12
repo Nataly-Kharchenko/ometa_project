@@ -15,9 +15,9 @@
             {% for obj in works %}
               <div class="swiper-slide">
                 {% if obj.choice_player == 'vimeo' %}
-                  <iframe class="preview-slider__media preview-slider__iframe vimeo-video js-vimeo-video" id="player{{ obj.id }}" src="{{ obj.link_for_video }}api=1&amp;background=0&amp;autoplay=0&amp;loop=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;player_id=player{{ obj.id }}" type="text/html" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  <iframe class="preview-slider__media padding-left preview-slider__iframe vimeo-video js-vimeo-video" id="player{{ obj.id }}" src="{{ obj.link_for_video }}api=1&amp;background=0&amp;autoplay=0&amp;loop=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;player_id=player{{ obj.id }}" type="text/html" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
                 {% elif obj.choice_player == 'YouTube' %}
-                  <iframe class="preview-slider__media preview-slider__iframe vimeo-video" width="100%" src="{{ obj.link_for_video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
+                  <iframe class="preview-slider__media padding-left preview-slider__iframe vimeo-video" width="100%" src="{{ obj.link_for_video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
                 {% endif %}
                 <h3 class="preview-slider__title">{{ obj.name }}<span class="creds creds_small grey">{{ obj.description | linebreaks }}</span></h3>
               </div>
