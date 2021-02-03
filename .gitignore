@@ -106,7 +106,7 @@ venv.bak/
 
 .idea
 /static/
-/media/
+# /media/
 celerybeat.pid
 myprojectenv
 
