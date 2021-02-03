@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!afbls*yv9aps*49+3r)=vl5ekni*c
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 # DEBUG = False
 # ALLOWED_HOSTS = ['135.181.99.22']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '135.181.99.22']
 # ALLOWED_HOSTS = ['powerful-thicket-88407.herokuapp.com']
 
 # Application definition
@@ -39,11 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'phonenumber_field',
     'adminsortable2',
     'easy_thumbnails',
-
     'ometa',
 ]
 
@@ -126,20 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "templates/partials/static/")
-]
-
-STATIC_ROOT = BASE_DIR
-
-MEDIA_DIR = os.path.join(BASE_DIR, 'templates/partials/media/')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'custom_static/'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
-
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 PHONENUMBER_DB_FORMAL = 'NATIONAL'
 
 PHONENUMBER_DEFAULT_REGION = "UA"
-
