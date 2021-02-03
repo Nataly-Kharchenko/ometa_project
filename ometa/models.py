@@ -8,7 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Preview_Video(models.Model):
     number = models.IntegerField(default=1)
     name = models.CharField(max_length=30, default='No name')
-    nameSecond = models.CharField(max_length=30, default='No name')
+    nameSecond = models.CharField(max_length=30)
     video = models.FileField(upload_to='preview_video', null=True, blank=True)
 
     def __unicode__(self):
